@@ -1,0 +1,15 @@
+if [ $# -eq 0 ]
+then
+	echo "Usage: phone searchfor [...searchfor]"
+	echo "(You didn't tell me what you want to search for.)"
+	exit 0
+fi
+
+arr=$1
+for tmp in "${@:2}"
+do
+	arr=$arr\|$tmp
+done
+
+eval 'egrep "($arr)" mydata | awk -f display.awk'
+exit 0
